@@ -1,0 +1,42 @@
+﻿@model IEnumerable<titanitedb.Models.MineralViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the TitaniteDb!</h1>
+</div>
+
+
+<form asp-controller="Home" asp-action="Index">
+    <p>
+        Search: <input type="text" name="SearchString" maxlength="500" minlength="1" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Sample Name</th>
+            <th scope="col">Tectonic Setting</th>
+            <th scope="col">Latitude Max</th>
+            <th scope="col">Longitude Max</th>
+            <th scope="col">Rock Name</th>
+            <th scope="col">Mineral</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.sample_name</td>
+                <td>@m.tectonic_setting</td>
+                <td>@m.lat_max</td>
+                <td>@m.long_max</td>
+                <td>@m.rock_name</td>
+                <td>@m.mineral</td>
+            </tr>
+        }
+    </tbody>
+</table>
