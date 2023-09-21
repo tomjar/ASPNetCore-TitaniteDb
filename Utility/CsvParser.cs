@@ -14,8 +14,8 @@ namespace titanitedb.Utility
         {
 
             // Note: If this fails to locate the csv file, you can manually set the path based on your local machine
-            int length = "titanitedb".Length;
-            int titanitedbIndex = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)?.IndexOf("titanitedb") + length ?? 0;
+            int length = "ASPNetCore-TitaniteDb".Length;
+            int titanitedbIndex = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)?.IndexOf("ASPNetCore-TitaniteDb") + length ?? 0;
             var rootPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)?.Substring(0, titanitedbIndex) ?? string.Empty;
             var _filePath = Path.Combine(rootPath, "TITANITES.csv");
 
