@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using titanitedb.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,9 @@ builder.Services.AddControllersWithViews();
 
 // add memory caching
 builder.Services.AddMemoryCache();
+builder.Services.AddDbContext<TitaniteDbContext>(options => {
+    options.UseSqlite("FileName=titanite.db");
+});
 
 var app = builder.Build();
 

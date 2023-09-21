@@ -39,6 +39,7 @@ namespace titanitedb.Utility
                     {
                         titanites.Add(new Titanite()
                         {
+                            id = Guid.NewGuid(),
                             citation = r.Result.citation,
                             sample_name = r.Result.sample_name,
                             tectonic_setting = r.Result.tectonic_setting,
