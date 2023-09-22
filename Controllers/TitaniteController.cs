@@ -18,7 +18,7 @@ public class TitaniteController : Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
         Titanite[]? titanites;
         MineralViewModel[]? data = Array.Empty<MineralViewModel>();
@@ -34,7 +34,7 @@ public class TitaniteController : Controller
         }
         else
         {
-            titanites = await _context.Titanites.ToArrayAsync();
+            titanites = _context.Titanites.ToArray();
             _memoryCache.Set("T1", titanites);
 
             data = titanites?.Select(t => new MineralViewModel(t))
@@ -42,15 +42,16 @@ public class TitaniteController : Controller
                     .ToArray();
         }
 
-        return View(data);
+        return View("~/Views/Home/Index.cshtml",data);
     }
 
-    public async Task<IActionResult> Search(string searchString = "")
+    public IActionResult Search(string searchString = "")
     {
+        Console.WriteLine(searchString);
         // MineralViewModel[] filtered = Array.Empty<MineralViewModel>();
         List<MineralViewModel> filtered = new List<MineralViewModel>();
         // simple search
-        var results = await _context.Titanites?
+        var results = _context.Titanites?
         .Where(d =>
         d.latitude_max.Contains(searchString)
         || d.longitude_max.Contains(searchString)
@@ -59,13 +60,13 @@ public class TitaniteController : Controller
         || d.mineral.Contains(searchString)
         || d.tectonic_setting.Contains(searchString))
         .Take(100)
-        .ToArrayAsync();
+        .ToArray();
 
-        for (int i = 0; i <= results.Length; i++)
+        for (int i = 0; i < results.Length; i++)
         {
             filtered.Add(new MineralViewModel(results[i]));
         }
 
-        return View(filtered);
+        return View("~/Views/Home/Index.cshtml", filtered);
     }
 }
