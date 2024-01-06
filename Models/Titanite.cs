@@ -5,9 +5,11 @@ public partial class Titanite
 {
 
     #region methods
+
     /// <summary>
-    /// 
+    /// Searches all columns in the Titanite database
     /// </summary>
+    /// <param name="context"></param>
     /// <param name="search"></param>
     /// <returns></returns>
     public static Titanite[] Search(TitanitesContext context, string search)
@@ -191,7 +193,8 @@ public partial class Titanite
             || t.UlvospinelMol.Contains(search)
             || t.AgeKa.Contains(search)
             || t.AgeMa.Contains(search)
-        ).ToArray();
+        ).Take(100)
+        .ToArray();
     }
     #endregion
 

@@ -4,7 +4,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to the TitaniteDb!</h1>
+    <h1 class="display-4">Welcome to the Titanite Database!</h1>
 </div>
 
 
@@ -15,7 +15,7 @@
     </p>
 </form>
 
-<table class="table">
+<table id="titaniteResults" class="table">
     <thead>
         <tr>
             <th scope="col">Sample Name</th>
@@ -40,3 +40,13 @@
         }
     </tbody>
 </table>
+
+<script>
+    window.removeEventListener('load', initView);
+    window.addEventListener('load', initView);
+
+    function initView(){
+        new DataTable('#titaniteResults');
+    }
+    
+</script>
