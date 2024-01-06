@@ -1,4 +1,4 @@
-﻿@model IEnumerable<titanitedb.Models.MineralViewModel>
+﻿@model IEnumerable<titanitedb.Models.Titanite>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -30,12 +30,12 @@
         @foreach (var m in Model)
         {
             <tr>
-                <td>@m.sample_name</td>
-                <td>@m.tectonic_setting</td>
-                <td>@m.lat_max</td>
-                <td>@m.long_max</td>
-                <td>@m.rock_name</td>
-                <td>@m.mineral</td>
+                <td>@m.SampleName</td>
+                <td>@m.TectonicSetting</td>
+                <td>@m.LatitudeMax</td>
+                <td>@m.LongitudeMax</td>
+                <td>@m.RockName</td>
+                <td>@m.Mineral</td>
             </tr>
         }
     </tbody>

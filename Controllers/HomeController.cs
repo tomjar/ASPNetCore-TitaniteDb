@@ -8,9 +8,9 @@ namespace titanitedb.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly TitaniteDbContext _context;
+    private readonly TitanitesContext _context;
 
-    public HomeController(TitaniteDbContext context, ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, TitanitesContext context)
     {
         _logger = logger;
         _context = context;
@@ -20,12 +20,16 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Index()
     {
+        Titanite[]? titanites;
 
-        MineralViewModel[] top100 = _context.Titanites.Take(100).Select(t => new MineralViewModel(t)).ToArray();
 
+        titanites = _context.Titanites.ToArray();
 
-        MineralViewModel[] empty = Array.Empty<MineralViewModel>();
-        return View(top100);
+        var data = titanites?
+                .Take(100)
+                .ToArray();
+
+        return View("~/Views/Home/Index.cshtml", data);
     }
 
     public IActionResult Privacy()

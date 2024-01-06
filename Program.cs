@@ -8,11 +8,13 @@ builder.Services.AddControllersWithViews();
 
 // add memory caching
 builder.Services.AddMemoryCache();
-builder.Services.AddDbContext<TitaniteDbContext>(options => {
-    options.UseSqlite("FileName=titanite.db");
+
+builder.Services.AddDbContext<TitanitesContext>(options => {
+    options.UseSqlite("Name=titaniteSqlLite");
 });
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
